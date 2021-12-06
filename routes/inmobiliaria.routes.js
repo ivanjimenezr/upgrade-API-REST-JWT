@@ -9,19 +9,16 @@ const {
     getAllInmobiliarias,
     getInmobiliariasById,
     deleteInmobiliariaById,
-    updateInmobiliariaById,
-    getAllInmobiliariasByUser
+    updateInmobiliariaById
 } = require("../controllers/inmobiliaria.controllers");
 
 //ruta para crear inmobiliaria
 // router.post("/create", [isAuth], newInmobiliaria);
 router.post("/create", [isAuth], newInmobiliaria);
 //ruta para obtener todas las inmobiliarias
-router.get("/", [isAuth], getAllInmobiliarias);
-//ruta para obtener las inmobiliarias de un usuario
-router.get("/inmobiliariasbyuser", [isAuth], getAllInmobiliariasByUser)
+router.get("/", getAllInmobiliarias);
 //ruta para obtener una inmobiliaria por id
-router.get("/:inmobiliariaId", [isAuth], getInmobiliariasById);
+router.get("/:inmobiliariaId", getInmobiliariasById);
 //ruta para borrar una inmobiliaria
 router.delete("/:inmobiliariaId", [isAuth], deleteInmobiliariaById)
 //ruta para modificar una inmobiliaria

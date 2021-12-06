@@ -2,18 +2,14 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-// //Requerimos mongoose para comunicarnos con la bd
-// const mongoose = require("mongoose");
-// //guardamos la url de Mongo en una variable
-// const MONGO_DB="mongodb+srv://chiklete:.Lechuga!@cluster0.f3k1j.mongodb.net/pisos?retryWrites=true&w=majority"
-// const mongoDb = process.env.MONGO_DB;
-// //Configuramos la función connect 
+
 
 const mongoose = require('mongoose');
-
+// const { DB_URL } = require('../config/config');
+// console.log(DB_URL)
 const MONGO_DB = "mongodb+srv://chiklete:.Lechuga!@cluster0.f3k1j.mongodb.net/pisos?retryWrites=true&w=majority";
 
-const connect = async () => {
+const dbConnection = async () => {
   try {
     const db = await mongoose.connect(MONGO_DB, {
       useNewUrlParser: true,
@@ -25,15 +21,10 @@ const connect = async () => {
     console.log("Error to connect with BD", error);
   }
 };
-// //exportamos la funcion connect
-// module.exports = { connect };
+
+module.exports =  dbConnection;
 
 
-                
 
-// const dbConnection = mongoose.connect(DB_URL, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// });
 
-module.exports = { connect};
+

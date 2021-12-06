@@ -10,14 +10,14 @@ const getAllPisos = async (req, res, next) => {
       if (req.query.page) { //Se le añade paginación
         const page = parseInt(req.query.page);
         const skip = (page - 1) * 20;
-        const pisos = await Piso.find().skip(skip).limit(20);
+        const pisos = await Piso.find().skip(skip).limit(20).populate('inmobiliaria');
         return res.json({
           status: 200,
           message: HTTPSTATUSCODE[200],
           data: { pisos: pisos },
         });
       } else {
-        const pisos = await Piso.find();
+        const pisos = await Piso.find().populate('inmobiliaria');
         return res.json({
           status: 200,
           message: HTTPSTATUSCODE[200],
@@ -35,7 +35,7 @@ const getPisoById = async (req, res, next) => {
     try {
       const pisoId = req.params.pisoId;
       
-      const pisoById = await Piso.findById(pisoId);
+      const pisoById = await Piso.findById(pisoId).populate('inmobiliaria');
       
       return res.json({
         status: 200,

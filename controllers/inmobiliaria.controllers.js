@@ -10,7 +10,7 @@ const getAllInmobiliarias = async (req, res, next) => {
     if (req.query.page) {
       const page = parseInt(req.query.page);
       const skip = (page - 1) * 20;
-      const inmobiliarias = await Inmobiliaria.find().skip(skip).limit(20);
+      const inmobiliarias = await Inmobiliaria.find().skip(skip).limit(20).populate('piso');
       // const inmobiliarias = await Inmobiliaria.find().skip(skip).limit(20).populate("pisos");
       return res.json({
         status: 200,
@@ -18,7 +18,7 @@ const getAllInmobiliarias = async (req, res, next) => {
         data: { inmobiliarias: inmobiliarias },
       });
     } else {
-      const inmobiliarias = await Inmobiliaria.find();
+      const inmobiliarias = await Inmobiliaria.find().populate('piso');
       // const inmobiliarias = await Inmobiliaria.find().populate("nombre");
       return res.json({
         status: 200,
@@ -35,7 +35,7 @@ const getAllInmobiliarias = async (req, res, next) => {
 const getInmobiliariasById = async (req, res, next) => {
   try {
     const { inmobiliariaId } = req.params;
-    const inmobiliariaDb = await Inmobiliaria.findById(inmobiliariaId);
+    const inmobiliariaDb = await Inmobiliaria.findById(inmobiliariaId).populate('piso');
     // const inmobiliariaDb = await Inmobiliaria.findById(inmobiliariaId).populate("pisos");
     return res.json({
       status: 200,
@@ -112,68 +112,35 @@ const deleteInmobiliariaById = async (req, res, next) => {
 const updateInmobiliariaById = async (req, res, next) => {
   try {
     const { inmobiliariaId } = req.params;
+    console.log(inmobiliariaId)
     const authority = req.authority.id
-    const userInmobiliaria = await Inmobiliaria.findById(inmobiliariaId)
-
-    if (authority == userInmobiliaria.author._id) {
-
+    console.log(authority)
       const inmobiliariaToUpdate = new Inmobiliaria();
-      if (req.body.name) inmobiliariaToUpdate.name = req.body.name;
-      if (req.body.description) inmobiliariaToUpdate.description = req.body.description;
-      if (req.body.pisos) inmobiliariaToUpdate.pisos = req.body.pisos;
+      
+      if (req.body.nombre) inmobiliariaToUpdate.nombre = req.body.nombre;
+      if (req.body.ciudad) inmobiliariaToUpdate.ciudad = req.body.ciudad;
+      if (req.body.telefono) inmobiliariaToUpdate.telefono = req.body.telefono;
+      if (req.body.piso) inmobiliariaToUpdate.piso = req.body.piso || [];
       inmobiliariaToUpdate._id = inmobiliariaId;
 
-      const inmobiliariaUpdated = await Inmobiliaria.findByIdAndUpdate(inmobiliariaId, inmobiliariaToUpdate);
+      const inmobiliariaUpdated = await Inmobiliaria.findByIdAndUpdate(inmobiliariaId, inmobiliariaToUpdate).populate('piso');
       return res.json({
         status: 200,
         message: HTTPSTATUSCODE[200],
         data: { inmobiliarias: inmobiliariaUpdated }
       });
-    } else {
-      return res.json({
-        status: 403,
-        message: HTTPSTATUSCODE[403],
-        data: null
-      })
-    }
+    
 
   } catch (err) {
     return next(err);
   }
 }
 
-//Metodo para obtener los documentos de la bd segun el usuario que lo ha creado
-const getAllInmobiliariasByUser = async (req, res, next) => {
-  try {
-    const author = req.authority.id;
-
-    if (req.query.page) {
-      const page = parseInt(req.query.page);
-      const skip = (page - 1) * 20;
-      const allInmobiliariasByUser = await Inmobiliaria.find({ author: author }).skip(skip).limit(20).populate("pisos");
-      return res.json({
-        status: 200,
-        message: HTTPSTATUSCODE[200],
-        data: { inmobiliarias: allInmobiliariasByUser },
-      });
-    } else {
-      const allInmobiliariasByUser = await Inmobiliaria.find({ author: author }).populate("pisos");
-      return res.json({
-        status: 200,
-        message: HTTPSTATUSCODE[200],
-        data: { inmobiliarias: allInmobiliariasByUser },
-      });
-    }
-  } catch (err) {
-    return next(err)
-  }
-}
 //Exportamos la funciones
 module.exports = {
   newInmobiliaria,
   getAllInmobiliarias,
   getInmobiliariasById,
   deleteInmobiliariaById,
-  updateInmobiliariaById,
-  getAllInmobiliariasByUser
+  updateInmobiliariaById
 }

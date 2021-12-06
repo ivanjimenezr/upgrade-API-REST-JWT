@@ -7,6 +7,8 @@ const jwt = require("jsonwebtoken");
 // Cargamos el fichero de los HTTPSTATUSCODE
 const HTTPSTATUSCODE = require("../utils/httpStatusCode");
 
+
+
 // Codificamos las operaciones que se podran realizar con relacion a los usuarios
 const createUser = async (req, res, next) => {
   try {
@@ -72,8 +74,35 @@ const logout = (req, res, next) => {
   }
 }
 
+//Metodo para retornar todos los pisos registrados en la base de datos
+
+const getAllUsuarios = async (req, res, next) => {
+  try {
+    if (req.query.page) { //Se le añade paginación
+      const page = parseInt(req.query.page);
+      const skip = (page - 1) * 20;
+      const usuarios = await Usuario.find().skip(skip).limit(20);
+      return res.json({
+        status: 200,
+        message: HTTPSTATUSCODE[200],
+        data: { usuarios: usuarios },
+      });
+    } else {
+      const usuarios = await Usuario.find();
+      return res.json({
+        status: 200,
+        message: HTTPSTATUSCODE[200],
+        data: { usuarios: usuarios },
+      });
+    }
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   createUser,
   authenticate,
-  logout
+  logout,
+  getAllUsuarios
 }

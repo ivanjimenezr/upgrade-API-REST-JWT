@@ -8,12 +8,11 @@ const PisoSchema = new Schema (
         tipo: {type:String, require:true},
         direccion: {type:String, require:true},
         superficie: {type:Number, require:true},
-        propietario: { type: String, ref: "usuarios", required: true },
-        inmobiliaria: [{ type: String, ref: "inmobiliarias", required: true }],
+        inmobiliaria: [{type: mongoose.Types.ObjectId, ref: 'Inmobiliarias'}],
 
     },
     {timestamps: true}
 );
 
-const Piso = mongoose.model('pisos',PisoSchema);
+const Piso = mongoose.model('Pisos',PisoSchema);
 module.exports = Piso

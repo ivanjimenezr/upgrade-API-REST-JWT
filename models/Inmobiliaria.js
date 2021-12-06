@@ -7,11 +7,11 @@ const InmobiliariaSchema = new Schema (
         nombre: {type:String, require:true},
         ciudad: {type:String, require:true},
         telefono: {type:Number},
-        piso: [{ type: Schema.Types.ObjectId, ref: "pisos"}],
+        piso: [{ type: Schema.Types.ObjectId, ref: "Pisos"}],
 
     },
     {timestamps: true}
 );
 
-const Inmobiliaria = mongoose.model('inmobiliarias',InmobiliariaSchema);
+const Inmobiliaria = mongoose.model('Inmobiliarias',InmobiliariaSchema);
 module.exports = Inmobiliaria

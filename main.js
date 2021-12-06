@@ -1,7 +1,8 @@
 const express = require('express');
 
 //Importamos la conexion a la db
-const {connect} = require("./config/database");
+const dbConnection = require("./config/database");
+
 
 //Importamos las rutas
 const usuario = require("./routes/usuario.routes");
@@ -13,7 +14,7 @@ const HTTPSTATUSCODE = require("./utils/httpStatusCode");
 
 const cors = require("cors");
 //Ejecutamos la funcion que conecta con la db
-connect();
+dbConnection();
 
 const PORT = 3000;
 
