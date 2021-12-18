@@ -16,7 +16,7 @@ const cors = require("cors");
 //Ejecutamos la funcion que conecta con la db
 dbConnection();
 
-const PORT = 3000;
+const PORT = 'https://inmobiliaria-bootcamp.herokuapp.com/';
 
 const server = express();
 
