@@ -130,11 +130,11 @@ const updatePisoById = async (req, res, next) => {
 
       pisoToUpdate._id = pisoId;
 
-      const pisoToUpdate = await Piso.findByIdAndUpdate(pisoId, pisoToUpdate);
+      const pisoUpdated = await Piso.findByIdAndUpdate(pisoId, pisoToUpdate);
       return res.json({
         status: 200,
         message: HTTPSTATUSCODE[200],
-        data: { pisos: pisoToUpdate }
+        data: { pisos: pisoUpdated }
       });
     
 

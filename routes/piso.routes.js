@@ -3,6 +3,9 @@ const express = require("express");
 //Guardamos la funcion express.Router() en una variable
 const router = express.Router();
 
+//importamos nuestro middleware
+const { isAuth } = require("../middlewares/auth.midleware")
+
 //Importamos las funciones del controlador del piso
 const { getAllPisos, getPisoById, newPiso, deletePisoById, updatePisoById } = require("../controllers/piso.controllers");
 //Definimos el metodo, la ruta de entrada y la función del controlador
