@@ -7,45 +7,75 @@ const Piso = require('../models/Piso')
 // definimos datos para meter en la base de datos
 const pisos = [
     {
-      titular: 'Piso en las Rozas',
-      tipo: 'Duplex',
+      titular: 'Casa o chalet independiente en Club de Golf, Las Rozas de Madrid',
+      precio: '2.200.000€',
+      tipo: 'Chalet',
       direccion: 'Avenida Europa 33',
-      superficie: 150,
+      superficie: 500,
+      imagen: 'https://img3.idealista.com/blur/WEB_LISTING-M/0/id.pro.es.image.master/8b/a1/9f/920719733.jpg',
       inmobiliaria: ['61ac0fccf109cbc060de405b']
     },
     {
-      titular: 'Chalé casi nuevo',
-      tipo: 'Chalé',
+      titular: 'Casa o chalet independiente en Las Matas- Peñascales, Las Rozas de Madrid',
+      precio: '590.000€',
+      tipo: 'Chalet',
       direccion: 'Avenida Princesa 24',
-      superficie: 345,
+      superficie: 300,
+      imagen: 'https://img3.idealista.com/blur/WEB_LISTING-M/0/id.pro.es.image.master/c9/54/74/940514642.jpg',
       inmobiliaria: ['61ac0fccf109cbc060de405b']
     },
     {
-      titular: 'Casita en la playa',
-      tipo: 'Apartamento',
-      direccion: 'Cantabrico 678',
-      superficie: 46,
+      titular: 'Chalet en Monte Rozas, Las Rozas de Madrid',
+      precio: '790.000€',
+      tipo: 'Chalet',
+      direccion: 'Calle del rio 71',
+      superficie: 297,
+      imagen: 'https://img3.idealista.com/blur/WEB_LISTING-M/0/id.pro.es.image.master/68/b5/6c/932357676.jpg',
       inmobiliaria: ['61ac0fccf109cbc060de405b']
     },
     {
-      titular: 'Piso a reformar',
+      titular: 'Piso en Alto de la Jabonería, Las Rozas de Madrid',
+      precio: '189.000€',
       tipo: 'Piso',
-      direccion: 'Doctor revilla 3',
+      direccion: 'Calle germany 246',
       superficie: 78,
+      imagen: 'https://img3.idealista.com/blur/WEB_LISTING-M/0/id.pro.es.image.master/87/52/88/942198327.jpg',
       inmobiliaria: ['61ac0fccf109cbc060de405b']
     },
     {
-      titular: 'Casa en la montaña',
-      tipo: 'Chalé',
-      direccion: 'Picos de Europa 97',
-      superficie: 467,
+      titular: 'Casa o chalet independiente en Las Matas- Peñascales, Las Rozas de Madrid',
+      precio: '740.000€',
+      tipo: 'Chalet',
+      direccion: 'Calle alegría 87',
+      superficie: 451,
+      imagen: 'https://img3.idealista.com/blur/WEB_LISTING-M/0/id.pro.es.image.master/3e/51/32/900607976.jpg',
       inmobiliaria: ['61ac0fccf109cbc060de405b']
     },
     {
-      titular: 'Como nuevo',
+      titular: 'Casa o chalet independiente en Las Matas- Peñascales, Las Rozas de Madrid',
+      precio: '460.000€',
+      tipo: 'Chalet',
+      direccion: 'Calle margarita 987',
+      superficie: 220,
+      imagen: 'https://img3.idealista.com/blur/WEB_LISTING-M/0/id.pro.es.image.master/97/52/d0/805411071.jpg',
+      inmobiliaria: ['61ac0fccf109cbc060de405b']
+    },
+    {
+      titular: 'Piso en El Pinar- Punta Galea, Las Rozas de Madrid',
+      precio: '390.000€',
       tipo: 'Piso',
-      direccion: 'Alcala 245',
-      superficie: 65,
+      direccion: 'Avda Hipolito 16',
+      superficie: 220,
+      imagen: 'https://img3.idealista.com/blur/WEB_LISTING-M/180/id.pro.es.image.master/f5/70/53/931462301.jpg',
+      inmobiliaria: ['61ac0fccf109cbc060de405b']
+    },
+    {
+      titular: 'Casa o chalet independiente en El Cantizal, El Cantizal, Las Rozas de Madrid',
+      precio: '970.000€',
+      tipo: 'Chalet',
+      direccion: 'Avda las Rosas 216',
+      superficie: 420,
+      imagen: 'https://img3.idealista.com/blur/WEB_LISTING-M/0/id.pro.es.image.master/55/ef/e5/942265939.jpg',
       inmobiliaria: ['61ac0fccf109cbc060de405b']
     },
   ];
