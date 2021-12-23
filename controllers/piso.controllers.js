@@ -79,12 +79,13 @@ const newPiso = async (req, res, next) => {
 const deletePisoById = async (req, res, next) => {
   try {
     const { pisoId } = req.params;
+    const id = {_id:req.params.pisoId};
     const authority = req.authority.id
-    const userPiso = await Piso.findById(pisoId)
+    const userPiso = await Piso.findById(id)
 
     if (authority == userPiso.author._id) {
 
-      const pisoDeleted = await Piso.findByIdAndDelete(pisoId);
+      const pisoDeleted = await Piso.findByIdAndDelete(id);
       if (!pisoDeleted) {
         return res.json({
           status: 200,
