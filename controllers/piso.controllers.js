@@ -79,13 +79,13 @@ const newPiso = async (req, res, next) => {
 const deletePisoById = async (req, res, next) => {
   try {
     const { pisoId } = req.params;
-    const id = {_id:req.params.pisoId};
-    const authority = req.authority.id
-    const userPiso = await Piso.findById(id)
+    
+    // const authority = req.authority.id
+    // const userPiso = await Piso.findById(pisoId)
 
-    if (authority == userPiso.author._id) {
+    // if (authority == userPiso.author._id) {
       // const pisoDeleted = await Piso.findByIdAndDelete(id);
-      const pisoDeleted = await Piso.findOneAndRemove({ _id: id });
+      const pisoDeleted = await Piso.findOneAndRemove(pisoId);
       if (!pisoDeleted) {
         return res.json({
           status: 200,
@@ -99,13 +99,13 @@ const deletePisoById = async (req, res, next) => {
           data: { pisos: pisoDeleted },
         });
       }
-    } else {
-      return res.json({
-        status: 403,
-        message: HTTPSTATUSCODE[403],
-        data: null
-      })
-    }
+    // } else {
+    //   return res.json({
+    //     status: 403,
+    //     message: HTTPSTATUSCODE[403],
+    //     data: null
+    //   })
+    // }
   } catch (err) {
     return next(err);
   }
