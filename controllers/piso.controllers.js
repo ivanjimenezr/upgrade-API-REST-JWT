@@ -85,7 +85,7 @@ const deletePisoById = async (req, res, next) => {
 
     // if (authority == userPiso.author._id) {
       // const pisoDeleted = await Piso.findByIdAndDelete(id);
-      const pisoDeleted = await Piso.findOneAndRemove(pisoId);
+      const pisoDeleted = await Piso.findByIdAndDelete(pisoId);
       if (!pisoDeleted) {
         return res.json({
           status: 200,
