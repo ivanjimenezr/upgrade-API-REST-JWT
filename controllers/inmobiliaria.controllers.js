@@ -77,10 +77,10 @@ const newInmobiliaria = async (req, res, next) => {
 const deleteInmobiliariaById = async (req, res, next) => {
   try {
     const { inmobiliariaId } = req.params;
-    const authority = req.authority.id
-    const userInmobiliaria = await Inmobiliaria.findById(inmobiliariaId)
+    // const authority = req.authority.id
+    // const userInmobiliaria = await Inmobiliaria.findById(inmobiliariaId)
 
-    if (authority == userInmobiliaria.author._id) {
+    // if (authority == userInmobiliaria.author._id) {
 
       const inmobiliariaDeleted = await Inmobiliaria.findByIdAndDelete(inmobiliariaId);
       if (!inmobiliariaDeleted) {
@@ -96,13 +96,13 @@ const deleteInmobiliariaById = async (req, res, next) => {
           data: { inmobiliarias: inmobiliariaDeleted },
         });
       }
-    } else {
-      return res.json({
-        status: 403,
-        message: HTTPSTATUSCODE[403],
-        data: null
-      })
-    }
+    // } else {
+    //   return res.json({
+    //     status: 403,
+    //     message: HTTPSTATUSCODE[403],
+    //     data: null
+    //   })
+    // }
   } catch (err) {
     return next(err);
   }

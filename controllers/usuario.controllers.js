@@ -12,7 +12,7 @@ const HTTPSTATUSCODE = require("../utils/httpStatusCode");
 // Codificamos las operaciones que se podran realizar con relacion a los usuarios
 const createUser = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
     const usuarioExistente = await Usuario.findOne({ email });
     if (usuarioExistente) {
         const error = new Error('Usuario ya registrado');
@@ -20,7 +20,7 @@ const createUser = async (req, res, next) => {
     }
 
     const encryptedPassword = await bcrypt.hash(password, 10);
-    const newUser = new Usuario({ email, password: encryptedPassword });
+    const newUser = new Usuario({ name, email, password: encryptedPassword });
 
     const userDb = await newUser.save();
 
