@@ -123,5 +123,6 @@ module.exports = {
   createUser,
   authenticate,
   logout,
-  getAllUsuarios
+  getAllUsuarios,
+  getUsuarioById
 }
