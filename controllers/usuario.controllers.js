@@ -100,6 +100,25 @@ const getAllUsuarios = async (req, res, next) => {
   }
 };
 
+// Metodo para la busqueda de pisos por ID
+const getUsuarioById = async (req, res, next) => {
+    
+  try {
+    const usuarioId = req.params.usuarioId;
+    
+    const usuarioById = await Usuario.findById(usuarioId);
+    
+    return res.json({
+      status: 200,
+      message: HTTPSTATUSCODE[200],
+      data: { usuarios: usuarioById }
+    });
+  } catch (err) {
+    return next(err);
+    
+  }
+};
+
 module.exports = {
   createUser,
   authenticate,
