@@ -49,7 +49,10 @@ const authenticate = async (req, res, next) => {
         { expiresIn: "1h" }
       );
       //devolvemos el usuario y el token.
-      return res.status(200).json({ user: userInfo, token: token });
+      return res.status(200).json({
+        _id: userInfo._id,
+        user: userInfo,
+        token: token });
     } else {
       const error = new Error();
       error.status = 401;
